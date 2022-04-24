@@ -1,0 +1,356 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Apr 22 22:32:32 2022
+
+# Variables
+
+# makefile (from 'makefile', line 15)
+SRC_CPP_FILES := src/main.cpp
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+SSH_AGENT_LAUNCHER = gnome-keyring
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c376e458-c7a1-4b14-b8c0-ac790ab61d73.sock
+# environment
+MANDATORY_PATH = /usr/share/gconf/ubuntu-xorg.mandatory.path
+# makefile (from 'makefile', line 9)
+SRC_DIR := src
+# environment
+VSCODE_CWD = /home/andrew
+# environment
+WINDOWPATH = 2
+# environment
+LIBVIRT_DEFAULT_URI = qemu:///system
+# default
+MAKE_COMMAND := make
+# environment
+QT_ACCESSIBILITY = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# makefile (from 'makefile', line 10)
+OBJ_DIR := obj
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/andrew/Documents/School/2022_Spring_Semester/Classes/CSC275/Final
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu-xorg:/home/andrew/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/andrew/.config/VSCodium/CachedData/dfd34e8260c270da74b5c2d86d61aee4b6d56977
+# environment
+LANG = C
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# makefile (from 'makefile', line 19)
+HEAD_C_FILES := 
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile (from 'makefile', line 29)
+CYAN := \033[1;36m
+# makefile
+MAKEFLAGS = pqrR
+# environment
+DEVKITARM = /opt/devkitpro/devkitARM
+# makefile
+CURDIR := /home/andrew/Documents/School/2022_Spring_Semester/Classes/CSC275/Final
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu-xorg:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XDG_SESSION_DESKTOP = ubuntu-xorg
+# makefile (from 'makefile', line 1)
+MAKEFILE_LIST := makefile
+# makefile (from 'makefile', line 21)
+HEAD_FILES := $(subst ,, )
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 1229572
+# environment
+XDG_SESSION_TYPE = x11
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+DEVKITPPC = /opt/devkitpro/devkitPPC
+# environment
+SESSION_MANAGER = local/laptop:@/tmp/.ICE-unix/7034,unix/laptop:/tmp/.ICE-unix/7034
+# automatic
+*F = $(notdir $*)
+# makefile (from 'makefile', line 20)
+HEAD_CPP_FILES := 
+# environment
+CHROME_DESKTOP = codium-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# makefile (from 'makefile', line 3)
+SHELL := /bin/bash
+# default
+MAKECMDGOALS := all
+# environment
+XMODIFIERS = @im=ibus
+# environment
+SHLVL = 0
+# environment
+MAKELEVEL := 0
+# makefile (from 'makefile', line 14)
+SRC_C_FILES := 
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /home/andrew/.local/bin:/opt/devkitpro/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/andrew/.dotnet/tools
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# makefile (from 'makefile', line 25)
+OBJ_FILES := obj/main.o
+# environment
+INVOCATION_ID = 091646f16dd94054b06f59a189705fc2
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+USERNAME = andrew
+# makefile (from 'makefile', line 30)
+GREEN := \033[1;32m
+# automatic
+?F = $(notdir $?)
+# environment
+DEVKITPRO = /opt/devkitpro
+# environment
+DESKTOP_AUTOSTART_ID = 10284879232ed3dfd0164909787186776500000070340020
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# automatic
++F = $(notdir $+)
+# environment
+DESKTOP_SESSION = ubuntu-xorg
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = andrew
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /home/andrew/.config/autostart/ulauncher.desktop
+# makefile (from 'makefile', line 2)
+EXE = spaceRace
+# makefile
+.DEFAULT_GOAL := default
+# environment
+SYSTEMD_EXEC_PID = 7034
+# makefile (from 'makefile', line 31)
+ORANGE := \033[1;33m
+# makefile (from 'makefile', line 28)
+RED := \033[1;35m
+# environment
+DISPLAY = :0
+# environment
+USER = andrew
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+DEFAULTS_PATH = /usr/share/gconf/ubuntu-xorg.default.path
+# default
+MAKE_VERSION := 4.3
+# makefile (from 'makefile', line 16)
+SRC_FILES :=  src/main.cpp
+# 'override' directive
+.SHELLSTATUS := 0
+# makefile (from 'makefile', line 6)
+LDFLAGS = -lpthread
+# environment
+MANAGERPID = 6853
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7270
+# environment
+_ = /usr/bin/dbus-update-activation-environment
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# makefile (from 'makefile', line 32)
+COLORTERM := \033[0m
+# environment
+JOURNAL_STREAM = 8:55218
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# makefile (from 'makefile', line 11)
+BUILD_DIR := build
+# environment
+HOME = /home/andrew
+# environment
+QT_IM_MODULE = ibus
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-0d17e15e-1.66.2-main.sock
+# environment
+IM_CONFIG_PHASE = 1
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'makefile', line 1)
+CC := g++
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+GDMSESSION = ubuntu-xorg
+# variable set hash-table stats:
+# Load=119/1024=12%, Rehash=0, Collisions=6/189=3%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# src (device 2055, inode 31722111): 3 files, no impossibilities.
+# . (device 2055, inode 31071309): 6 files, no impossibilities.
+
+# 9 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+obj/%.o: src/%.c*
+#  recipe to execute (from 'makefile', line 57):
+	@mkdir -p $(@D)
+	@$(CC) $(CXXFLAGS) -c $^ -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
+# Files
+
+# Not a target:
+obj/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+default: .init spaceRace
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 37):
+	
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 53):
+	rm -rf build obj
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-17 23:47:21.275004
+#  File has been updated.
+#  Successfully updated.
+
+.init:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 42):
+	@mkdir -p ./$(OBJ_DIR)
+	@mkdir -p ./$(BUILD_DIR)
+
+.PHONY: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+spaceRace: obj/main.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 49):
+	@echo -e "$(GREEN)[100%] Linking $@$(COLORTERM)"
+	@$(CC) -o $(BUILD_DIR)/$@ $^ $(LDFLAGS)
+ 
+
+# files hash-table stats:
+# Load=10/1024=1%, Rehash=0, Collisions=0/27=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 20 / storage = 160 B / avg = 8 B
+# current buf: size = 8162 B / used = 160 B / count = 20 / avg = 8 B
+
+# strcache performance: lookups = 35 / hit rate = 42%
+# hash-table stats:
+# Load=20/8192=0%, Rehash=0, Collisions=0/35=0%
+# Finished Make data base on Fri Apr 22 22:32:32 2022
+
+ 
