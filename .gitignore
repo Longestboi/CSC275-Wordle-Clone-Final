@@ -1,0 +1,10 @@
+# Ignore these directories
+build/
+obj/
+
+# Backup files from gedit
+*~
+*/*~
+
+# vscode logs remove
+.vscode/*.log

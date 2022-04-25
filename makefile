@@ -1,6 +1,7 @@
 CC := g++
-EXE = spaceRace
+EXE = Wordle
 SHELL := /bin/bash
+STD_VER := c++11
 
 # Flags
 LDFLAGS += -lpthread
@@ -14,11 +15,6 @@ BUILD_DIR := build
 SRC_C_FILES	  := $(shell find $(SRC_DIR) -name *.c)
 SRC_CPP_FILES := $(shell find $(SRC_DIR) -name *.cpp)
 SRC_FILES 	  := $(SRC_C_FILES) $(SRC_CPP_FILES)
-
-# Header Files
-HEAD_C_FILES  := $(shell find $(SRC_DIR) -name *.h)
-HEAD_CPP_FILES:= $(shell find $(SRC_DIR) -name *.hpp)
-HEAD_FILES    := $(HEAD_C_FILES) $(HEAD_CPP_FILES)
 
 # Object Files
 OBJ_FILES := $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC_C_FILES))
@@ -47,7 +43,7 @@ endif
 
 $(EXE): $(OBJ_FILES)
 	@echo -e "$(GREEN)[100%] Linking $@$(COLORTERM)"
-	@$(CC) -o $(BUILD_DIR)/$@ $^ $(LDFLAGS)
+	@$(CC) -o $(BUILD_DIR)/$@ $^ $(LDFLAGS) -std=$(STD_VER)
 
 clean:
 	rm -rf build obj
@@ -55,4 +51,4 @@ clean:
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c*
 #	If the output directory doesn't exist, make it
 	@mkdir -p $(@D)
-	@$(CC) $(CXXFLAGS) -c $^ -o $@
+	@$(CC) $(CXXFLAGS) -c $^ -o $@ -std=$(STD_VER)

@@ -1,12 +1,8 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/andrew/Documents/School/2022_Spring_Semester/Classes/CSC275/Final'
- 
-mkdir -p ./obj
-mkdir -p ./build
- 
 mkdir -p obj
-g++  -c src/main.cpp -o obj/main.o
-echo -e "\033[1;32m[100%] Linking spaceRace\033[0m"
-g++ -o build/spaceRace obj/main.o -lpthread
+g++  -c src/main.cpp -o obj/main.o -std=c++11
+echo -e "\033[1;32m[100%] Linking Wordle\033[0m"
+g++ -o build/Wordle obj/main.o -lpthread -std=c++11
 make: Leaving directory '/home/andrew/Documents/School/2022_Spring_Semester/Classes/CSC275/Final'
  
