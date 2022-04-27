@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "cell.hpp"
+#include "termman.hpp"
 
 class gameboard{
 private:

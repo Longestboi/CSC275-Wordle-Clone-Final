@@ -14,6 +14,9 @@ const std::string fullWidthChars[26] {
 class cell{
 public:
     enum cellState{Wrong = 0, Unguessed = 0, Correct = 1, Misplaced = 2};
+
+    const int xSpace = 7;
+    const int ySpace = 4;
     
     // Set the color of the box
     void setCellColorFromState(cellState color);
@@ -40,7 +43,6 @@ public:
 
     // Hide current cell
     void hideCell();
-
     
 private:
     // Cell making stuff

@@ -16,11 +16,22 @@ gameboard::gameboard(int posX, int posY){
         // Make gameboard
         for(int j = 0; j < tmp.capacity(); j++){
             cell tempCell;
-            tmp.push_back(tempCell);
             
             tempCell.setCellPosition(
                 // Position the cells within a grid 
-                gameboardPosX + (j + 1) * 7, gameboardPosY + (i + 1) * 4);
+                (gameboardPosX + j * tempCell.xSpace), 
+                (gameboardPosY + i * tempCell.ySpace));
+
+            /* DEBUG STUFF
+            // Move cursor to the cells position 
+            std::cout << termman::moveCursor(
+                tempCell.getCellPosition('x'),
+                tempCell.getCellPosition('y') + 3);
+
+            // Display cell position in terminal
+            std::cout << tempCell.getCellPosition('x') << " " << tempCell.getCellPosition('y');
+            */
+            tmp.push_back(tempCell);
         }
 
         allRows.push_back(tmp);

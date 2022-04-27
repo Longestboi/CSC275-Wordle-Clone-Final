@@ -101,8 +101,6 @@ void cell::displayCell(){
     std::cout << termman::moveCursor(position[0], position[1] + 2) << box[2];
     std::cout << termman::clearFormatting;
 
-    std::cout << termman::moveCursor(position[0], position[1] + 3);
-    std::cout << position[0] << " " << position[1];
     std::cout << std::flush;
 }
 
@@ -110,16 +108,20 @@ void cell::hideCell(){
 
     // Lambda function for readability
     auto loopPrint = [](std::string box[3], int sn){
-        for(int i = 0; i < box[sn].length(); i++) std::cout << "";
+        // 7 is the 
+        for(int i = 0; i < 7; i++) {
+            std::cout << termman::clearFormatting << " ";
+        }
     };
 
-    auto cellPos = getCellPosition();
-
-    termman::moveCursor(cellPos[0], cellPos[1]);
+    std::cout << termman::moveCursor(posX, posY);
     loopPrint(box, 0);
-    termman::moveCursor(cellPos[0], cellPos[1] + 1);
+    
+    std::cout << termman::moveCursor(posX, posY + 1);
     loopPrint(box, 1);
-    termman::moveCursor(cellPos[0], cellPos[1] + 2);
+
+    std::cout << termman::moveCursor(posX, posY + 2);
     loopPrint(box, 2);
+    
     std::cout << std::flush;
 }
