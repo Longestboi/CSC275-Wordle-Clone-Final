@@ -1,22 +1,24 @@
 #include <chrono>
 #include <iostream>
 #include <thread>
+#include <vector>
+#include <unistd.h>
 
-#include "termman.hpp"
 #include "cell.hpp"
+#include "termman.hpp"
+#include "gameboard.hpp"
 
 
 int main(){
     // Stop cout from syncing with stdio
     std::ios_base::sync_with_stdio(false);
 
-    cell testCell;
+    gameboard *gb = new gameboard();
 
-    std::cout << termman::clearScreen;
+    // I hate to do this but...
+    system("clear");
+    //std::cout << termman::clearScreen;
 
-    testCell.setCellPosition(10, 5);
-    testCell.setBoxChar('c');
-    testCell.displayCell();
 
     std::cout << termman::resetCursorPosition;
     std::cout << termman::clearLine;
@@ -24,6 +26,7 @@ int main(){
     std::cout << std::flush;
 
     std::this_thread::sleep_for(std::chrono::seconds(3));
+    //while(true) sleep(1);
     //std::cout << termman::clearScreen;
 
     return 0;

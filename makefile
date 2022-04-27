@@ -43,7 +43,7 @@ endif
 
 $(EXE): $(OBJ_FILES)
 	@echo -e "$(GREEN)[100%] Linking $@$(COLORTERM)"
-	@$(CC) -o $(BUILD_DIR)/$@ $^ $(LDFLAGS) -std=$(STD_VER)
+	@$(CC) -o $(BUILD_DIR)/$@ $^ $(LDFLAGS) -std=$(STD_VER) -g -O0
 
 clean:
 	rm -rf build obj
@@ -51,4 +51,4 @@ clean:
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c*
 #	If the output directory doesn't exist, make it
 	@mkdir -p $(@D)
-	@$(CC) $(CXXFLAGS) -c $^ -o $@ -std=$(STD_VER)
+	@$(CC) $(CXXFLAGS) -c $^ -o $@ -std=$(STD_VER) -g -O0

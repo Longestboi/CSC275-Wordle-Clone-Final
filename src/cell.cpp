@@ -1,26 +1,50 @@
 #include "cell.hpp"
 #include "termman.hpp"
 
-void cell::setBoxColor(colors color){
-    this->currentColor = color;
+void cell::setCellColorFromState(cellState state){
+    this->currentCellState = state;
     return;
 }
 
-void cell::setBoxChar(char c){
-    currentCharacter = std::toupper(c);
+template <typename t>
+void cell::setCellChar(t c){
 
-    int buf = currentCharacter - 65;
+    char charBuf;
+    
+    if(typeid(c) == typeid(char)){
+        charBuf = c;
+    }else if(typeid(c) == typeid(std::string)){
+        charBuf = c.at(0);
+    }
 
+    // Change c to uppercase 
+    currentCharacter = std::toupper(charBuf);
+
+    // Subtract 'A' from current character to normalize it to 0-25
+    int buf = currentCharacter - 'A';
+    
     try{
         // If the currentCharacter is out of range throw an error
         if(buf < 0 || buf > 25) throw buf;
-
+    
         box[1] = fullwidthSpace + fullWidthChars[buf] + fullwidthSpace;
     }
     catch(int numOutOfRange){
         std::cerr << 
             "Tried to access an out of range Fullwidth letter, " 
             << buf << "\n";
+    }
+}
+
+int cell::getCellPosition(char p){
+
+    switch(std::tolower(p)){
+    case 'x':
+        return posX;
+    case 'y':
+        return posY;
+    default:
+        return -1;
     }
 }
 
@@ -41,18 +65,39 @@ void cell::setCellPosition(int x, int y){
 
 void cell::displayCell(){
 
+    termman::termColors currentFGColor;
+    termman::termColors currentBGColor;
+
+    switch (currentCellState){
+        case cellState::Correct:
+            currentBGColor = termman::termColors::Green;
+            currentFGColor = termman::termColors::DGreen;
+            break;
+
+        case cellState::Misplaced:
+            currentBGColor = termman::termColors::Yellow;
+            currentFGColor = termman::termColors::DYellow;
+            break;
+
+        // Case covers wrong, unguessed, and errors
+        case 0: default:
+            currentBGColor = termman::termColors::Black;
+            currentFGColor = termman::termColors::DBlack;
+            break;
+    }
+
     auto position = getCellPosition();
 
-    std::cout << termman::setBGColor(termman::termColors::Green);
-    std::cout << termman::setFGColor(termman::termColors::DGreen);
+    std::cout << termman::setBGColor(currentBGColor);
+    std::cout << termman::setFGColor(currentFGColor);
     std::cout << termman::moveCursor(position[0], position[1]) << box[0];
 
     std::cout << termman::clearFormatting;
-    std::cout << termman::setBGColor(termman::termColors::Green);
+    std::cout << termman::setBGColor(currentBGColor);
     std::cout << termman::setFGColor(termman::termColors::White);
     std::cout << termman::moveCursor(position[0], position[1] + 1) << box[1];
     
-    std::cout << termman::setFGColor(termman::termColors::DGreen);
+    std::cout << termman::setFGColor(currentFGColor);
     std::cout << termman::moveCursor(position[0], position[1] + 2) << box[2];
     std::cout << termman::clearFormatting;
 }

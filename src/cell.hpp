@@ -13,16 +13,28 @@ const std::string fullWidthChars[26] {
 
 class cell{
 public:
-    enum colors{Blank, Green, Yellow};
+    enum cellState{Wrong = 0, Unguessed = 0, Correct = 1, Misplaced = 2};
     
     // Set the color of the box
-    void setBoxColor(colors color);
+    void setCellColorFromState(cellState color);
+
     // Set the character in the box
-    void setBoxChar(char c);
+    template <typename t>
+    void setCellChar(t input);
+
+    // Get the X or Y position of the current cell 
+    //
+    // p: 'X' or 'Y'
+    // Returns: X or Y position of current cell.
+    // If p isn't 'x' or 'y', return -1
+    int getCellPosition(char p);
+
     // Get the position of the top-left char in the cell 
     std::vector<int> getCellPosition(void);
+
     // Set the position of the top-left char in the cell 
     void setCellPosition(int x, int y);
+
     // Display the cell
     void displayCell();
 
@@ -34,7 +46,7 @@ private:
     
     // Cell display stuff
     char currentCharacter;
-    colors currentColor;
+    cellState currentCellState;
     // the X and Y position of the top-left corner
     int posX, posY;
 };

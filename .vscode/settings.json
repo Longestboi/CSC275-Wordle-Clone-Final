@@ -48,6 +48,7 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "vector": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "numbers": "cpp"
     }
 }
