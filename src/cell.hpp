@@ -22,6 +22,9 @@ public:
     template <typename t>
     void setCellChar(t input);
 
+    // Get the position of the top-left char in the cell 
+    std::vector<int> getCellPosition(void);
+
     // Get the X or Y position of the current cell 
     //
     // p: 'X' or 'Y'
@@ -29,14 +32,14 @@ public:
     // If p isn't 'x' or 'y', return -1
     int getCellPosition(char p);
 
-    // Get the position of the top-left char in the cell 
-    std::vector<int> getCellPosition(void);
-
     // Set the position of the top-left char in the cell 
     void setCellPosition(int x, int y);
 
     // Display the cell
     void displayCell();
+
+    // Hide current cell
+    void hideCell();
 
     
 private:
@@ -48,7 +51,7 @@ private:
     char currentCharacter;
     cellState currentCellState;
     // the X and Y position of the top-left corner
-    int posX, posY;
+    int posX, posY ;
 };
 
 #endif /* __CELL__ */

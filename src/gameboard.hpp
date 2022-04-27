@@ -12,9 +12,11 @@ private:
     int gameboardPosY = 5;
 
 public:
-    gameboard();
+    gameboard(int posX, int posY);
     ~gameboard();
 
-    static gameboard& GetInstance();
+    void setGameBoardPosition(int x, int y);
+    void displayGameBoard();
+    void hideGameBoard();
 };
 #endif /* __Game_Board__ */
