@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 
+#include "termman.hpp"
+
+
 const std::string fullWidthChars[26] {
     "Ａ", "Ｂ", "Ｃ", "Ｄ", "Ｅ", "Ｆ", "Ｇ", "Ｈ", "Ｉ",
     "Ｊ", "Ｋ", "Ｌ", "Ｍ", "Ｎ", "Ｏ", "Ｐ", "Ｑ", "Ｒ",
@@ -19,7 +22,7 @@ public:
     const int ySpace = 4;
     
     // Set the color of the box
-    void setCellColorFromState(cellState color);
+    void setCellColorFromState(cellState state);
 
     // Set the character in the box
     template <class T>
@@ -51,6 +54,8 @@ public:
                     numOutOfRange.what() << "\n";
         }
     }
+
+    void clearCellChar();
 
     // Get the position of the top-left char in the cell 
     std::vector<int> getCellPosition(void);

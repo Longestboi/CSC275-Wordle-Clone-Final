@@ -22,5 +22,11 @@ public:
     void hideGameBoard();
     std::vector<std::vector<cell>>& getAllRows();
     void setColorOfCell(cell::cellState state, int x, int y);
+    void setColorOfAllCellsFromState(cell::cellState state);
+    void setColorOfRowFromState(cell::cellState state, int rowNum);
+    void setCharOfCell(char c, int x, int y);
+    void setRowCharsFromString(std::string input, int rowNum);
+    void clearCharOfCell(int x, int y);
+    void clearRowOfChars(int rowNum);
 };
 #endif /* __Game_Board__ */

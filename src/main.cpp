@@ -1,12 +1,12 @@
 #include <chrono>
 #include <iostream>
 #include <thread>
-#include <vector>
 #include <unistd.h>
+#include <vector>
 
 #include "cell.hpp"
-#include "termman.hpp"
 #include "gameboard.hpp"
+#include "termman.hpp"
 
 
 int main(){
@@ -17,22 +17,24 @@ int main(){
 
     // I hate to do this but...
     system("clear");
-    //std::cout << termman::clearScreen;
     
     std::cout << std::flush;
 
-    cell tets;
-
-    tets.setCellPosition(5, 5);
-
     gb->setColorOfCell(cell::cellState::Correct, 4, 0);
 
-    tets.setCellChar(0);
-    tets.displayCell();
+    gb->setColorOfRowFromState(cell::cellState::Misplaced, 1);
 
-    //gb->displayGameBoard();
+    gb->displayGameBoard();
+
+    gb->setRowCharsFromString("tests", 2);
+
+    gb->displayGameBoard();
+
     std::this_thread::sleep_for(std::chrono::seconds(3));
     //gb->hideGameBoard();
+    
+    gb->clearCharOfCell(0, 0);
+
     //std::this_thread::sleep_for(std::chrono::seconds(3));
     //gb->displayGameBoard();
     //while(true) sleep(1);

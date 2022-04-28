@@ -6,8 +6,6 @@
 namespace termman{
 
     const std::string escapeSeq = "\033[";
-    
-
 
     enum termColors {
         Black = 30, Red = 31, Green = 32, Yellow = 33,

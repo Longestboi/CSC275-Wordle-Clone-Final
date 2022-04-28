@@ -88,13 +88,111 @@ void gameboard::setColorOfCell(cell::cellState state, int x, int y){
 
         if(tmp->at(0) == 'x'){
             std::cerr << oor.what() << 
-                ", is out of range of allrows sub vector.\n"; 
+                ", is out of range of allrows subvector.\n"; 
         }else if(tmp->at(0)){
             std::cerr << oor.what() << ", is out of range of allrows.\n"; 
         }
     }
 }
 
-//void gameboard::setCharOfCell(char c){
+void gameboard::setColorOfAllCellsFromState(cell::cellState state){
+    std::vector<std::vector<cell>>::iterator i;
+    std::vector<cell>::iterator j;
+    for(i = allRows.begin(); i < allRows.end(); i++){
+        for(j = i->begin(); j < i->end(); j++){
+            j->setCellColorFromState(state);
+        }
+    }
+}
 
-//}
+void gameboard::setColorOfRowFromState(cell::cellState state, int rowNum){
+    try{
+        if(rowNum > WORDLENGTH - 1 || rowNum < 0) {
+            throw std::out_of_range("rowNum: " + std::to_string(rowNum));
+        }
+        std::vector<cell>::iterator i;
+        for(i = allRows[rowNum].begin(); i < allRows[rowNum].end(); i++){
+            i->setCellColorFromState(state);
+        }
+    }
+    catch(std::out_of_range oor){
+        std::cerr << oor.what() << ", is out of range of allrows subvector.\n"; 
+    }
+}
+
+void gameboard::setCharOfCell(char c, int x, int y){
+    try{
+        if(x > WORDLENGTH - 1 || x < 0){
+            throw std::out_of_range("x: " + std::to_string(x));
+        }
+        if(y > GUESSES - 1 || y < 0) {
+            throw std::out_of_range("y: " + std::to_string(y));
+        }
+
+        allRows[y][x].setCellChar(c);
+    }
+    catch(std::out_of_range oor){
+        std::string *tmp = new std::string(oor.what());
+
+        if(tmp->at(0) == 'x'){
+            std::cerr << oor.what() << 
+                ", is out of range of allrows subvector.\n"; 
+        }else if(tmp->at(0)){
+            std::cerr << oor.what() << ", is out of range of allrows.\n"; 
+        }
+    }
+    return;
+}
+
+void gameboard::setRowCharsFromString(std::string input, int rowNum){
+    try{
+        if(input.size() < WORDLENGTH) {
+            throw std::out_of_range(
+                "str size: " + std::to_string(input.size())
+            );
+        }
+    }
+    catch(std::out_of_range oor){
+        std::cerr << oor.what() <<  ", is out of range of allrows.\n";
+        return;
+    }
+
+    str_toupper(input);
+
+    for(int i = 0; i < input.size(); i++){
+        setCharOfCell(input[i], i, rowNum);
+    }
+}
+
+void gameboard::clearCharOfCell(int x, int y){
+    try{
+        if(x > WORDLENGTH - 1 || x < 0){
+            throw std::out_of_range("x: " + std::to_string(x));
+        }
+        if(y > GUESSES - 1 || y < 0) {
+            throw std::out_of_range("y: " + std::to_string(y));
+        }
+
+        allRows[y][x].clearCellChar();
+    }
+    catch(std::out_of_range oor){
+        std::cerr << oor.what() << ", is out of range of allrows.\n";
+    }
+    return;
+}
+
+void gameboard::clearRowOfChars(int rowNum){
+    try{
+        if(rowNum > WORDLENGTH - 1 || rowNum < 0) {
+            throw std::out_of_range("rowNum: " + std::to_string(rowNum));
+        }
+
+        std::vector<cell>::iterator i;
+        for(i = allRows[rowNum].begin(); i < allRows[rowNum].end(); i++){
+            i->clearCellChar();
+        }
+    }
+    catch(std::out_of_range oor){
+        std::cerr << oor.what() << ", out of range of cell vector.\n";
+    }
+}

@@ -1,8 +1,15 @@
 #include "cell.hpp"
-#include "termman.hpp"
 
 void cell::setCellColorFromState(cellState state){
     this->currentCellState = state;
+    return;
+}
+
+void cell::clearCellChar(){
+    this->currentCharacter = (char)NULL;
+
+    box[1] = fullwidthSpace + fullwidthSpace + fullwidthSpace;
+    this->displayCell();
     return;
 }
 
@@ -49,7 +56,7 @@ void cell::displayCell(){
             currentFGColor = termman::termColors::DYellow;
             break;
 
-        // Case covers wrong, unguessed, and errors
+        // Case covers wrong, unguessed, and malformed cell states
         case 0: default:
             currentBGColor = termman::termColors::Black;
             currentFGColor = termman::termColors::DBlack;
