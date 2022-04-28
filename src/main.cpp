@@ -21,10 +21,19 @@ int main(){
     
     std::cout << std::flush;
 
-    gb->displayGameBoard();
+    cell tets;
+
+    tets.setCellPosition(5, 5);
+
+    gb->setColorOfCell(cell::cellState::Correct, 4, 0);
+
+    tets.setCellChar(0);
+    tets.displayCell();
+
+    //gb->displayGameBoard();
     std::this_thread::sleep_for(std::chrono::seconds(3));
-    gb->hideGameBoard();
-    std::this_thread::sleep_for(std::chrono::seconds(3));
+    //gb->hideGameBoard();
+    //std::this_thread::sleep_for(std::chrono::seconds(3));
     //gb->displayGameBoard();
     //while(true) sleep(1);
     //std::cout << termman::clearScreen;

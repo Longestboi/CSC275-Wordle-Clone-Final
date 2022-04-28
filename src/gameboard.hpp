@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "cell.hpp"
+#include "common.hpp"
 #include "termman.hpp"
 
 class gameboard{
@@ -19,5 +20,7 @@ public:
     void setGameBoardPosition(int x, int y);
     void displayGameBoard();
     void hideGameBoard();
+    std::vector<std::vector<cell>>& getAllRows();
+    void setColorOfCell(cell::cellState state, int x, int y);
 };
 #endif /* __Game_Board__ */

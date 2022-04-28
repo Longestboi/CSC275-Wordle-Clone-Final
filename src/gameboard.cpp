@@ -5,13 +5,13 @@ gameboard::gameboard(int posX, int posY){
     setGameBoardPosition(posX, posY);
 
     // Limit how many rows can be made in the vector allRows
-    allRows.reserve(6);
+    allRows.reserve(GUESSES);
 
     for(int i = 0; i < allRows.capacity(); i++){
         std::vector<cell> tmp;
 
         // Limit number of cells in a row
-        tmp.reserve(5);
+        tmp.reserve(WORDLENGTH);
 
         // Make gameboard
         for(int j = 0; j < tmp.capacity(); j++){
@@ -66,3 +66,35 @@ void gameboard::hideGameBoard(){
         }
     }
 }
+
+std::vector<std::vector<cell>>& gameboard::getAllRows(){
+    return allRows;
+}
+
+void gameboard::setColorOfCell(cell::cellState state, int x, int y){
+
+    try{
+        if(x > WORDLENGTH - 1 || x < 0){
+            throw std::out_of_range("x: " + std::to_string(x));
+        }
+        if(y > GUESSES - 1 || y < 0) {
+            throw std::out_of_range("y: " + std::to_string(y));
+        }
+
+        allRows[y][x].setCellColorFromState(state);
+    }
+    catch(std::out_of_range oor){
+        std::string *tmp = new std::string(oor.what());
+
+        if(tmp->at(0) == 'x'){
+            std::cerr << oor.what() << 
+                ", is out of range of allrows sub vector.\n"; 
+        }else if(tmp->at(0)){
+            std::cerr << oor.what() << ", is out of range of allrows.\n"; 
+        }
+    }
+}
+
+//void gameboard::setCharOfCell(char c){
+
+//}

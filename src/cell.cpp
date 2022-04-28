@@ -6,36 +6,6 @@ void cell::setCellColorFromState(cellState state){
     return;
 }
 
-template <typename t>
-void cell::setCellChar(t c){
-
-    char charBuf;
-    
-    if(typeid(c) == typeid(char)){
-        charBuf = c;
-    }else if(typeid(c) == typeid(std::string)){
-        charBuf = c.at(0);
-    }
-
-    // Change c to uppercase 
-    currentCharacter = std::toupper(charBuf);
-
-    // Subtract 'A' from current character to normalize it to 0-25
-    int buf = currentCharacter - 'A';
-    
-    try{
-        // If the currentCharacter is out of range throw an error
-        if(buf < 0 || buf > 25) throw buf;
-    
-        box[1] = fullwidthSpace + fullWidthChars[buf] + fullwidthSpace;
-    }
-    catch(int numOutOfRange){
-        std::cerr << 
-            "Tried to access an out of range Fullwidth letter, " 
-            << buf << "\n";
-    }
-}
-
 std::vector<int> cell::getCellPosition(void){
     std::vector<int> position;
 
@@ -105,23 +75,11 @@ void cell::displayCell(){
 }
 
 void cell::hideCell(){
-
-    // Lambda function for readability
-    auto loopPrint = [](std::string box[3], int sn){
-        // 7 is the 
-        for(int i = 0; i < 7; i++) {
+    for(int i = 0; i < ySpace - 1; i++){
+        std::cout << termman::moveCursor(posX, posY + i);
+        for(int i = 0; i < xSpace; i++) {
             std::cout << termman::clearFormatting << " ";
         }
-    };
-
-    std::cout << termman::moveCursor(posX, posY);
-    loopPrint(box, 0);
-    
-    std::cout << termman::moveCursor(posX, posY + 1);
-    loopPrint(box, 1);
-
-    std::cout << termman::moveCursor(posX, posY + 2);
-    loopPrint(box, 2);
-    
+    }
     std::cout << std::flush;
 }

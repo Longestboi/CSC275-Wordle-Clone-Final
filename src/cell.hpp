@@ -22,8 +22,35 @@ public:
     void setCellColorFromState(cellState color);
 
     // Set the character in the box
-    template <typename t>
-    void setCellChar(t input);
+    template <class T>
+    void setCellChar(T input){
+        int buf;
+
+        if(typeid(input) == typeid(char)){
+            // Change input to uppercase 
+            currentCharacter = std::toupper(input);
+
+            // Subtract 'A' from current character to normalize it to 0-25
+            buf = currentCharacter - 'A';
+        }
+        if(typeid(input) == typeid(int)){
+            currentCharacter = input + 'A';
+
+            buf = input;
+        }
+        
+        try{
+            // If the currentCharacter is out of range throw an error
+            if(buf < 0 || buf > 25) throw std::out_of_range(std::to_string(buf));
+        
+            box[1] = fullwidthSpace + fullWidthChars[buf] + fullwidthSpace;
+        }
+        catch(std::out_of_range numOutOfRange){
+            std::cerr << 
+                "Tried to access an out of range Fullwidth letter, " <<
+                    numOutOfRange.what() << "\n";
+        }
+    }
 
     // Get the position of the top-left char in the cell 
     std::vector<int> getCellPosition(void);
