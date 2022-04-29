@@ -39,7 +39,7 @@ gameboard::gameboard(int posX, int posY){
 }
 
 gameboard::~gameboard(){
-    
+    hideGameBoard();
 }
 
 void gameboard::setGameBoardPosition(int x, int y){
