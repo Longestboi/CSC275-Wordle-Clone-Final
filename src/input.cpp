@@ -1,9 +1,8 @@
 #include "input.hpp"
-#include "termman.hpp"
-#include "common.hpp"
 
 input::input(){
-    echoOn(false);
+    termman::echoOn(false);
+    termman::cursorOn(false);
     isThreadStopped.store(false);
 
     fWord = new std::string();
@@ -19,8 +18,10 @@ input::~input(){
     stopThread();    
     // Run thread until function return
     inputThread->join();
+    termman::cursorOn(true);
+    termman::echoOn(true);
 
-    echoOn(true);
+    std::cout << std::flush;
 }
 
 void input::runInputThread(void){
@@ -32,11 +33,12 @@ void input::runInputThread(void){
         // Only allow a-z, A-Z to be added to the string
         if(
             fWord->length() < WORDLENGTH 
+            // stop NULL and Backspace
             && (currentChar.load() != '\0' && currentChar.load() != 127) 
-            //&& ((currentChar.load() >= 65 && currentChar.load() <= 90)
-            //    || (currentChar.load() >= 97 && currentChar.load() <= 122))
+            && ((currentChar.load() >= 65 && currentChar.load() <= 90)
+                || (currentChar.load() >= 97 && currentChar.load() <= 122))
         ){
-            // push char to string
+            // Push char to string
             fWord->push_back(currentChar.load());
         };
 
@@ -75,18 +77,10 @@ int input::kbhit(void) {
     return nbbytes;
 }
 
-void input::echoOn(bool on){
-        // Turn echo on or off in *nix/Linux
-        static const int STDIN = 0;
-        struct termios terminal;
-        tcgetattr(STDIN, &terminal);
-        (on == true) ? 
-            terminal.c_lflag |= ECHO : 
-            terminal.c_lflag &= ~ECHO;
-        tcsetattr(STDIN, TCSANOW, &terminal);
-        return;
-    }
-
 void input::stopThread(void){
     isThreadStopped.store(true);
+}
+
+char input::getCurrentChar(void){
+    return currentChar.load();
 }

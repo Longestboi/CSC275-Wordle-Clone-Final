@@ -5,9 +5,11 @@
 #include <chrono>
 #include <iostream>
 #include <sys/ioctl.h>
-#include <termios.h>
 #include <thread>
 #include <unistd.h>
+
+#include "common.hpp"
+#include "termman.hpp"
 
 class input{
 private:
@@ -23,9 +25,8 @@ public:
     void runInputThread(void);
 
     int kbhit(void);
-    void echoOn(bool on);
-    void cursorOn(bool on);
     void stopThread(void);
+    char getCurrentChar(void);
 };
 
 #endif /* __Input_Handler__ */

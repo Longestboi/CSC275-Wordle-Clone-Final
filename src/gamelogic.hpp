@@ -10,10 +10,12 @@ private:
     gameboard* gameBoard;
     
 public:
-    gameLogic();
-    ~gameLogic();
+    gameLogic(void);
+    ~gameLogic(void);
     
-    void gameInit();
+    void gameInit(void);
+    void gameLoop(void);
+    char getCurrentChar(void);
 };
 
 #endif /* __Game_Logic__ */

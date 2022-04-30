@@ -2,6 +2,7 @@
 #define __Term_Manipulator__
 
 #include <iostream>
+#include <termios.h>
 
 namespace termman{
 
@@ -22,6 +23,14 @@ namespace termman{
     const std::string clearScreen = escapeSeq + "0J";
     // Reset the formatting of the terminal
     const std::string clearFormatting = escapeSeq + "0m";
+    // Save screen
+    const std::string saveScreen = escapeSeq + "?47h";
+    // Restore screen
+    const std::string restoreScreen = escapeSeq + "?47l";
+    // Enable alt buffer
+    const std::string enableAltBuffer = escapeSeq + "?1049h";
+    // Disable alt buffer
+    const std::string disableAltBuffer = escapeSeq + "?1049l";
 
     static std::string moveCursor(int x, int y){
         return escapeSeq + std::to_string(y) + ";" + std::to_string(x) + "H";
@@ -46,6 +55,20 @@ namespace termman{
         }else{
             return escapeSeq + std::to_string(buf) + "m";
         }
+    }
+
+    static void echoOn(bool show){
+        // Turn echo on or off in *nix/Linux
+        static const int STDIN = 0;
+        struct termios terminal;
+        tcgetattr(STDIN, &terminal);
+        (show) ? terminal.c_lflag |= ECHO : terminal.c_lflag &= ~ECHO;
+        tcsetattr(STDIN, TCSANOW, &terminal);
+        return;
+    }
+
+    static void cursorOn(bool show){
+        std::cout << ((show) ? "\033[?25h" : "\033[?25l");
     }
 }
 

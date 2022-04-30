@@ -40,11 +40,14 @@ gameboard::gameboard(int posX, int posY){
 
 gameboard::~gameboard(){
     hideGameBoard();
+    std::cout << std::flush;
+    return;
 }
 
 void gameboard::setGameBoardPosition(int x, int y){
     gameboardPosX = x;
     gameboardPosY = y;
+    return;
 }
 
 void gameboard::displayGameBoard(){
@@ -55,6 +58,8 @@ void gameboard::displayGameBoard(){
             j->displayCell();
         }
     }
+    std::cout << std::flush;
+    return;
 }
 
 void gameboard::hideGameBoard(){
@@ -65,6 +70,8 @@ void gameboard::hideGameBoard(){
             j->hideCell();
         }
     }
+    std::cout << std::flush;
+    return;
 }
 
 std::vector<std::vector<cell>>& gameboard::getAllRows(){
@@ -93,6 +100,8 @@ void gameboard::setColorOfCell(cell::cellState state, int x, int y){
             std::cerr << oor.what() << ", is out of range of allrows.\n"; 
         }
     }
+    std::cout << std::flush;
+    return;
 }
 
 void gameboard::setColorOfAllCellsFromState(cell::cellState state){
@@ -103,6 +112,8 @@ void gameboard::setColorOfAllCellsFromState(cell::cellState state){
             j->setCellColorFromState(state);
         }
     }
+    std::cout << std::flush;
+    return;
 }
 
 void gameboard::setColorOfRowFromState(cell::cellState state, int rowNum){
@@ -118,6 +129,8 @@ void gameboard::setColorOfRowFromState(cell::cellState state, int rowNum){
     catch(std::out_of_range oor){
         std::cerr << oor.what() << ", is out of range of allrows subvector.\n"; 
     }
+    std::cout << std::flush;
+    return;
 }
 
 void gameboard::setCharOfCell(char c, int x, int y){
@@ -141,6 +154,7 @@ void gameboard::setCharOfCell(char c, int x, int y){
             std::cerr << oor.what() << ", is out of range of allrows.\n"; 
         }
     }
+    std::cout << std::flush;
     return;
 }
 
@@ -162,6 +176,8 @@ void gameboard::setRowCharsFromString(std::string input, int rowNum){
     for(int i = 0; i < input.size(); i++){
         setCharOfCell(input[i], i, rowNum);
     }
+
+    std::cout << std::flush;
 }
 
 void gameboard::clearCharOfCell(int x, int y){
@@ -178,6 +194,7 @@ void gameboard::clearCharOfCell(int x, int y){
     catch(std::out_of_range oor){
         std::cerr << oor.what() << ", is out of range of allrows.\n";
     }
+    std::cout << std::flush;
     return;
 }
 
@@ -195,4 +212,5 @@ void gameboard::clearRowOfChars(int rowNum){
     catch(std::out_of_range oor){
         std::cerr << oor.what() << ", out of range of cell vector.\n";
     }
+    std::cout << std::flush;
 }
