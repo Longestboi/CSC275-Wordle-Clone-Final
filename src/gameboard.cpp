@@ -38,7 +38,7 @@ gameboard::gameboard(int posX, int posY){
     }
 }
 
-gameboard::~gameboard(){
+gameboard::~gameboard(void){
     hideGameBoard();
     std::cout << std::flush;
     return;
@@ -50,7 +50,7 @@ void gameboard::setGameBoardPosition(int x, int y){
     return;
 }
 
-void gameboard::displayGameBoard(){
+void gameboard::displayGameBoard(void){
     std::vector<std::vector<cell>>::iterator i;
     std::vector<cell>::iterator j;
     for(i = allRows.begin(); i < allRows.end(); i++){
@@ -62,7 +62,7 @@ void gameboard::displayGameBoard(){
     return;
 }
 
-void gameboard::hideGameBoard(){
+void gameboard::hideGameBoard(void){
     std::vector<std::vector<cell>>::iterator i;
     std::vector<cell>::iterator j;
     for(i = allRows.begin(); i < allRows.end(); i++){
@@ -74,7 +74,12 @@ void gameboard::hideGameBoard(){
     return;
 }
 
-std::vector<std::vector<cell>>& gameboard::getAllRows(){
+void updateCellsInRow(int rowNum){
+
+    return;
+}
+
+std::vector<std::vector<cell>>& gameboard::getAllRows(void){
     return allRows;
 }
 
@@ -160,7 +165,7 @@ void gameboard::setCharOfCell(char c, int x, int y){
 
 void gameboard::setRowCharsFromString(std::string input, int rowNum){
     try{
-        if(input.size() < WORDLENGTH) {
+        if(input.size() > WORDLENGTH || input.size() < 0) {
             throw std::out_of_range(
                 "str size: " + std::to_string(input.size())
             );
@@ -173,8 +178,14 @@ void gameboard::setRowCharsFromString(std::string input, int rowNum){
 
     str_toupper(input);
 
-    for(int i = 0; i < input.size(); i++){
-        setCharOfCell(input[i], i, rowNum);
+    for(int i = 0; i < WORDLENGTH; i++){
+
+        //setCharOfCell(input[i], i, rowNum);
+        if(i < input.size()) setCharOfCell(input[i], i, rowNum);
+        if(i >= input.size()) clearCharOfCell(i, rowNum);
+        
+
+        allRows[rowNum][i].displayCell();
     }
 
     std::cout << std::flush;
@@ -213,4 +224,16 @@ void gameboard::clearRowOfChars(int rowNum){
         std::cerr << oor.what() << ", out of range of cell vector.\n";
     }
     std::cout << std::flush;
+}
+
+void gameboard::clearAllRowsOfChars(void){
+    std::vector<std::vector<cell>>::iterator i;
+    std::vector<cell>::iterator j;
+    for(i = allRows.begin(); i < allRows.end(); i++){
+        for(j = i->begin(); j < i->end(); j++){
+            j->clearCellChar();
+        }
+    }
+    std::cout << std::flush;
+    return;
 }

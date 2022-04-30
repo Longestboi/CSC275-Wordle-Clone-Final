@@ -8,14 +8,17 @@ class gameLogic{
 private:
     input* inputHandler;
     gameboard* gameBoard;
-    
+
+    bool hasWon = false;
+    std::string guess;
+
 public:
     gameLogic(void);
     ~gameLogic(void);
     
     void gameInit(void);
     void gameLoop(void);
-    char getCurrentChar(void);
+    void resetBoard(void);
 };
 
 #endif /* __Game_Logic__ */

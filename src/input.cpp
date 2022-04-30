@@ -28,6 +28,7 @@ void input::runInputThread(void){
 
     while (!isThreadStopped.load()){
         // Get char from terminal
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
         currentChar.store((kbhit() != '\0') ? getchar(): '\0');
 
         // Only allow a-z, A-Z to be added to the string
@@ -83,4 +84,8 @@ void input::stopThread(void){
 
 char input::getCurrentChar(void){
     return currentChar.load();
+}
+
+std::string input::getFullWord(void){
+    return *fWord;
 }

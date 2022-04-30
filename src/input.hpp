@@ -27,6 +27,7 @@ public:
     int kbhit(void);
     void stopThread(void);
     char getCurrentChar(void);
+    std::string getFullWord(void);
 };
 
 #endif /* __Input_Handler__ */

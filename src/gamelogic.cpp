@@ -3,9 +3,11 @@
 gameLogic::gameLogic(void){
     inputHandler = new input();
     gameBoard = new gameboard(5, 4);
+
 }
 
 gameLogic::~gameLogic(void){
+    //std::cout << guess;
     // Delete game board and input handler
     delete gameBoard;
     delete inputHandler;
@@ -17,21 +19,37 @@ void gameLogic::gameInit(void){
     gameBoard->setColorOfRowFromState(cell::cellState::Misplaced, 1);
     gameBoard->displayGameBoard();
     gameBoard->setRowCharsFromString("tests", 2);
+
+    gameBoard->clearCharOfCell(3, 2);
     gameBoard->displayGameBoard();
     gameLoop();
 }
 
 void gameLogic::gameLoop(void){
-
+    
     // Main gameLoop
     while(true) {
-        if(std::tolower(inputHandler->getCurrentChar()) == 'q') {
-            delete this;
+        guess = inputHandler->getFullWord();
+
+        char handler = std::tolower(inputHandler->getCurrentChar());
+        
+        //gameBoard->setRowCharsFromString(guess, 0);
+        /*
+        switch (handler){
+        case 'q':
+            exit(0);
+            break;
+        case 'r':
+            resetBoard();
+            break;
+        default:
             break;
         }
+        */
     };
 }
 
-char gameLogic::getCurrentChar(void){
-    return inputHandler->getCurrentChar();
+void gameLogic::resetBoard(void){
+    gameBoard->setColorOfAllCellsFromState(cell::cellState::Unguessed);
+    gameBoard->clearAllRowsOfChars();
 }

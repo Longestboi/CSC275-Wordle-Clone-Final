@@ -27,6 +27,7 @@ public:
     // Set the character in the box
     template <class T>
     void setCellChar(T input){
+        
         int buf;
 
         if(typeid(input) == typeid(char)){
@@ -53,6 +54,8 @@ public:
                 "Tried to access an out of range Fullwidth letter, " <<
                     numOutOfRange.what() << "\n";
         }
+        std::cout << std::flush;
+        return;
     }
 
     void clearCellChar();
