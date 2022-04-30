@@ -38,7 +38,7 @@ int main(){
     gb->clearCharOfCell(0, 0);
     //std::this_thread::sleep_for(std::chrono::seconds(3));
     //gb->displayGameBoard();
-    //while(true) std::this_thread::sleep_for(std::chrono::seconds(1));
+    while(true) std::this_thread::sleep_for(std::chrono::milliseconds(50));
     //std::cout << termman::clearScreen;
     std::cout << termman::resetCursorPosition;
     std::cout << termman::clearLine;

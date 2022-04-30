@@ -12,8 +12,9 @@
 class input{
 private:
     std::thread* inputThread;
-    std::atomic_bool isThreadStopped;
-    std::atomic_char currentChar;
+    std::atomic<bool> isThreadStopped;
+    std::atomic<char> currentChar;
+    std::string* fWord;
 
 public:
     input();
@@ -22,7 +23,8 @@ public:
     void runInputThread(void);
 
     int kbhit(void);
-    int getCharFromTerminal(void); 
+    void echoOn(bool on);
+    void cursorOn(bool on);
     void stopThread(void);
 };
 

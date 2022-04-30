@@ -1,23 +1,57 @@
 #include "input.hpp"
+#include "termman.hpp"
+#include "common.hpp"
 
 input::input(){
+    echoOn(false);
+    isThreadStopped.store(false);
+
+    fWord = new std::string();
+    fWord->reserve(WORDLENGTH);
+
     inputThread = new std::thread(&input::runInputThread, this);
-    isThreadStopped = false;
-    //inputThread->detach();
 }
 
 input::~input(){
+
+
     // Allow runInputThread to return;
     stopThread();    
     // Run thread until function return
     inputThread->join();
+
+    echoOn(true);
 }
 
 void input::runInputThread(void){
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    while (!isThreadStopped.load()){
+        // Get char from terminal
+        currentChar.store((kbhit() != '\0') ? getchar(): '\0');
 
-    if(isThreadStopped) return;
+        // Only allow a-z, A-Z to be added to the string
+        if(
+            fWord->length() < WORDLENGTH 
+            && (currentChar.load() != '\0' && currentChar.load() != 127) 
+            //&& ((currentChar.load() >= 65 && currentChar.load() <= 90)
+            //    || (currentChar.load() >= 97 && currentChar.load() <= 122))
+        ){
+            // push char to string
+            fWord->push_back(currentChar.load());
+        };
+
+        // Remove char from end of string 
+        if(fWord->length() > 0 && currentChar.load() == 127){
+            fWord->pop_back();
+        }
+
+        if(fWord->length() == WORDLENGTH){
+            std::cout << std::flush;
+        }
+
+    }
+
+    if(isThreadStopped.load()) return;
 }
 
 // Adapted from https://stackoverflow.com/a/33201364
@@ -41,10 +75,18 @@ int input::kbhit(void) {
     return nbbytes;
 }
 
-int input::getCharFromTerminal(void){
-
-}
+void input::echoOn(bool on){
+        // Turn echo on or off in *nix/Linux
+        static const int STDIN = 0;
+        struct termios terminal;
+        tcgetattr(STDIN, &terminal);
+        (on == true) ? 
+            terminal.c_lflag |= ECHO : 
+            terminal.c_lflag &= ~ECHO;
+        tcsetattr(STDIN, TCSANOW, &terminal);
+        return;
+    }
 
 void input::stopThread(void){
-    isThreadStopped = true;
+    isThreadStopped.store(true);
 }
