@@ -13,13 +13,12 @@ gameLogic::~gameLogic(void){
 
 void gameLogic::gameInit(void){
 
-
     gameBoard->setColorOfCell(cell::cellState::Correct, 4, 0);
     gameBoard->setColorOfRowFromState(cell::cellState::Misplaced, 1);
     gameBoard->displayGameBoard();
     gameBoard->setRowCharsFromString("tests", 2);
     gameBoard->displayGameBoard();
-
+    gameLoop();
 }
 
 void gameLogic::gameLoop(void){
