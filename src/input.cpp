@@ -28,7 +28,8 @@ void input::runInputThread(void){
 
     while (!isThreadStopped.load()){
         // Get char from terminal
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        //discardRestOfLine();
         currentChar.store((kbhit() != '\0') ? getchar(): '\0');
 
         // Only allow a-z, A-Z to be added to the string
@@ -47,6 +48,7 @@ void input::runInputThread(void){
         if(fWord->length() > 0 && currentChar.load() == 127){
             fWord->pop_back();
         }
+        
 
         if(fWord->length() == WORDLENGTH){
             std::cout << std::flush;
@@ -88,4 +90,9 @@ char input::getCurrentChar(void){
 
 std::string input::getFullWord(void){
     return *fWord;
+}
+
+void input::discardRestOfLine(void){
+    int c;
+    while((c = getchar()) != EOF && c != '\n');
 }

@@ -33,19 +33,15 @@ void gameLogic::gameLoop(void){
 
         char handler = std::tolower(inputHandler->getCurrentChar());
         
-        //gameBoard->setRowCharsFromString(guess, 0);
-        /*
+        gameBoard->setRowCharsFromString(guess, 0);
+        
         switch (handler){
-        case 'q':
+        case 27:
             exit(0);
-            break;
-        case 'r':
-            resetBoard();
             break;
         default:
             break;
         }
-        */
     };
 }
 

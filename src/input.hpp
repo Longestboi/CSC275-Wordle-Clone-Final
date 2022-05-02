@@ -28,6 +28,7 @@ public:
     void stopThread(void);
     char getCurrentChar(void);
     std::string getFullWord(void);
+    void discardRestOfLine(void);
 };
 
 #endif /* __Input_Handler__ */

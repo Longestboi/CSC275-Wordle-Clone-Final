@@ -7,6 +7,8 @@
 #include "gamelogic.hpp"
 #include "termman.hpp"
 
+void __attribute__((destructor)) atExit();
+
 int main(){
     std::cout << termman::enableAltBuffer;
     // Stop cout from syncing with stdio
@@ -16,15 +18,17 @@ int main(){
     
     gl->gameInit();
 
-    // I hate to do this but...
-    system("clear");
-
     //std::cout << termman::clearScreen;
-    std::cout << termman::disableAltBuffer;
+    
     return 0;
 }
 
 void __attribute__((destructor)) atExit(){
+    // I hate to do this but...
+    system("clear");
+
+    std::cout << termman::disableAltBuffer;
+
     termman::echoOn(true);
     termman::cursorOn(true);
 }
